@@ -1,0 +1,809 @@
+acceptance:
+  prepare:
+    max_nan_percent: 2
+    min_rows: 50000
+  simulation:
+    max_drawdown: 0.15
+    min_profit_factor: 1.5
+    min_trades_per_week: 25
+    min_win_rate: 0.58
+  sltp:
+    min_rr: 2.0
+  train:
+    min_precision: 0.0
+backtest:
+  max_drawdown: 0.1
+  min_avg_rr: 2.0
+  min_profit_factor: 1.0
+  risk_pct: 2.5
+consistency_filters:
+  hour_distribution_check: true
+  max_win_rate_threshold: 0.7
+  min_win_rate_threshold: 0.45
+  session_balance_check: true
+data:
+  data_dir: data
+  input_dir: data/raw/
+  labeled_file: data/labeled.csv
+  log_dir: logs
+  models_dir: models/
+  prepared_file: data/prepared.csv
+dynamic_filters:
+  enabled: true
+  min_win_rate: 0.45
+  performance_window: 8
+  tighten_threshold: 0.35
+enhanced_quality_filters:
+  hour_quality_boost: true
+  min_quality_score: 0.75
+  min_win_rate_threshold: 0.5
+  momentum_threshold: 0.75
+  session_quality_boost: true
+  success_pattern_quality: true
+  volatility_threshold: 0.25
+enhanced_success_tracking:
+  auto_adjust_to_success: true
+  enhanced_pattern_matching: true
+  prevent_high_volume_weeks: true
+  quality_over_quantity: true
+  success_week_patterns:
+  - Jun16
+  - Jul7
+  - May5
+  - Jun2
+  target_trades_range:
+  - 45
+  - 60
+  target_win_rate: 0.58
+  track_success_weeks: true
+  volume_quality_balance: true
+filters:
+  exclude_hours:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  - 20
+  - 21
+  - 22
+  - 23
+goals:
+  risk_reward_range:
+  - 2.0
+  - 3.0
+  trades_per_week_range:
+  - 20
+  - 40
+  win_rate_range:
+  - 0.55
+  - 0.7
+  dynamic_rr_range:
+  - 1.5
+  - 4.0
+hour_boosts:
+  9: 2.2
+  10: 2.4
+  11: 2.0
+  12: 2.4
+  13: 2.0
+  14: 2.0
+  15: 2.4
+  18: 1.8
+hour_limits:
+  hour_16_max: 2
+  hour_17_max: 1
+  hour_4_max: 0
+hybrid_success_tracking:
+  auto_adjust_to_success: true
+  prevent_high_volume_weeks: true
+  quality_over_quantity: true
+  success_week_patterns:
+  - May5
+  - Jun16
+  - Jul7
+  target_trades_range:
+  - 40
+  - 50
+  target_win_rate: 0.6
+  track_success_weeks: true
+  volume_quality_balance: true
+label:
+  cooldown_min: 10
+  future_window: 24
+  max_bars: 48
+  max_sl_pips: 22
+  max_stop_loss: 15
+  min_rr: 2.0
+  min_rr_target: 2.0
+  min_win_rate_target: 0.58
+  take_profit: 15
+  threshold: 0.001
+loss_control:
+  cooldown_after_losses: 120
+  daily_loss_reset: true
+  max_consecutive_losses: 2
+  max_daily_losses: 4
+market:
+  timezone: America/Chicago
+  weekly_close: Friday 16:00
+  weekly_open: Sunday 16:00
+overflow_prevention:
+  auto_reduce_volume: true
+  hard_stop_at_limits: true
+  max_overflow_tolerance: 0
+  prevent_daily_overflow: true
+  prevent_session_overflow: true
+  prevent_weekly_overflow: true
+  quality_gate: true
+  success_pattern_gate: true
+performance_thresholds:
+  max_win_rate: 0.7
+  min_win_rate: 0.5
+  target_win_rate: 0.6
+  volume_quality_ratio: 0.8
+prepare:
+  indicators:
+    adx: 14
+    atr: 14
+    bollinger: 20
+    ema:
+    - 5
+    - 20
+    ichimoku:
+    - 9
+    - 26
+    - 52
+    rsi:
+    - 7
+    - 14
+    stochastic:
+    - 14
+    - 3
+  lag_periods:
+  - 1
+  - 3
+  - 5
+  - 10
+  lookback_years: 5
+  n_clusters: 3
+profit_filters:
+  max_loss_potential: 400
+  min_profit_potential: 300
+  profit_boost_threshold: 500
+ranker:
+  max_trades_per_week: 55
+  min_trades_per_week: 35
+  target_trades_per_week: 45
+  market_regime_aware: true
+  dynamic_targets: true
+risk_management:
+  dynamic_sizing: true
+  max_risk_per_trade: 0.015
+  quality_bonus: 1.6
+  session_bonus: true
+  time_bonus: true
+seed: 42
+session_limits:
+  Asian_max_trades: 2
+  London_max_trades: 12
+  NY_max_trades: 12
+  Overlap_max_trades: 4
+signal:
+  batch_size: 256
+  epochs: 10
+  features:
+  - open
+  - high
+  - low
+  - close
+  - volume
+  - ema_5
+  - ema_5_lag_1
+  - ema_5_lag_3
+  - ema_5_lag_5
+  - ema_5_lag_10
+  - ema_10
+  - ema_10_lag_1
+  - ema_10_lag_3
+  - ema_10_lag_5
+  - ema_10_lag_10
+  - ema_20
+  - ema_20_lag_1
+  - ema_20_lag_3
+  - ema_20_lag_5
+  - ema_20_lag_10
+  - ema_50
+  - ema_50_lag_1
+  - ema_50_lag_3
+  - ema_50_lag_5
+  - ema_50_lag_10
+  - rsi_14
+  - rsi_14_lag_1
+  - rsi_14_lag_3
+  - rsi_14_lag_5
+  - rsi_14_lag_10
+  - rsi_28
+  - rsi_28_lag_1
+  - rsi_28_lag_3
+  - rsi_28_lag_5
+  - rsi_28_lag_10
+  - macd
+  - macd_signal
+  - macd_diff
+  - ichimoku_tenkan
+  - ichimoku_kijun
+  - ichimoku_senkouA
+  - ichimoku_senkouB
+  - ichimoku_chikou
+  - adx
+  - plus_di
+  - minus_di
+  - atr
+  - atr_pct
+  - bb_upper
+  - bb_middle
+  - bb_lower
+  - bb_width
+  - stochastic_k
+  - stochastic_d
+  - cmf
+  - mfi
+  - bar_volatility
+  - relative_tick_volume
+  - return_1
+  - return_3
+  - return_5
+  - return_10
+  - hour
+  - weekday
+  - session_asian
+  - session_london
+  - session_ny
+  - session_overlap
+  - market_regime
+  min_precision_target: 0.8
+  min_signals_per_week: 8
+  model:
+    dropout: 0.2
+    lstm_units: 64
+  negative_cap: 80000
+  patience: 2
+  positive_cap: 50000
+  precision_filter:
+    base_features:
+    - return_1
+    - atr
+    - rsi_14
+    - stochastic_k
+    - hour
+    - weekday
+    - session_london
+    - session_ny
+    thresholds:
+    - 0.5
+    - 0.6
+    - 0.65
+    - 0.7
+  sequence_length: 32
+signal_quality:
+  min_score: 0.72
+  momentum_boost: 1.8
+  momentum_threshold: 0.72
+  volatility_penalty: 0.4
+  volatility_threshold: 0.3
+simulation:
+  cooldown_min: 15
+  initial_balance: 10000
+  market_regime_filters:
+  - 0
+  - 1
+  - 2
+  - 3
+  max_consecutive_losses: 5
+  max_daily_trades: 15
+  max_drawdown: 0.15
+  max_positions: 3
+  max_weekly_trades: 65
+  position_size: 0.1
+  risk_per_trade: 0.02
+  session_filters:
+    asian: true
+    london: false
+    ny: true
+    overlap: false
+  session_multipliers:
+    asian: 1.2
+    ny: 1.0
+  sltp_preferences:
+    avoid_sl: 0.312
+    avoid_tp: 0.998
+    preferred_sl: 0.702
+    preferred_tp: 2.246
+  stop_trading_drawdown: 0.1
+  time_filters:
+    avoid_hours:
+    - 1
+    - 4
+    - 9
+    - 11
+    - 17
+    - 18
+    - 22
+    avoid_minutes:
+    - 20
+    - 25
+    - 40
+    - 50
+    - 55
+    avoid_weekdays:
+    - 1
+    min_hours_between_trades: 1.0
+  market_aware: true
+  dynamic_rr: true
+  regime_adaptive: true
+sl_tp_grid:
+  sl_multipliers:
+  - 2.4
+  - 2.6
+  - 2.8
+  - 3.0
+  - 3.2
+  - 3.4
+  - 3.6
+  - 3.8
+  - 4.0
+  - 4.2
+  - 4.4
+  - 4.6
+  - 4.8
+  - 5.0
+  - 5.2
+  - 5.4
+  - 5.6
+  - 5.8
+  - 6.0
+  - 6.2
+  - 6.4
+  - 6.6
+  - 6.8
+  - 7.0
+  - 7.2
+  - 7.4
+  - 7.6
+  - 7.8
+  - 8.0
+  spread: 0.00013
+  tp_multipliers:
+  - 1.8
+  - 2.0
+  - 2.2
+  - 2.4
+  - 2.6
+  - 2.8
+  - 3.0
+  - 3.2
+sl_tp_preferences:
+  excluded_combos:
+  - sl: 0.312
+    tp: 0.998
+    reason: Poor performance
+  preferred_combos:
+  - sl: 0.702
+    tp: 2.246
+    boost: 1.3
+sltp:
+  features:
+  - close
+  - high
+  - low
+  - volume
+  - ema_5
+  - ema_10
+  - ema_20
+  - ema_50
+  - rsi_14
+  - rsi_28
+  - macd
+  - macd_signal
+  - macd_diff
+  - ichimoku_tenkan
+  - ichimoku_kijun
+  - ichimoku_senkouA
+  - ichimoku_senkouB
+  - ichimoku_chikou
+  - adx
+  - plus_di
+  - minus_di
+  - atr
+  - atr_pct
+  - bb_upper
+  - bb_middle
+  - bb_lower
+  - bb_width
+  - stochastic_k
+  - stochastic_d
+  - cmf
+  - mfi
+  - bar_volatility
+  - relative_tick_volume
+  - return_1
+  - return_3
+  - return_5
+  - return_10
+  - hour
+  - weekday
+  - session_asian
+  - session_london
+  - session_ny
+  - session_overlap
+  max_tp: 28
+  min_rr: 2.0
+  min_tp: 4
+  tp_step: 2
+success_pattern:
+  quality_over_quantity: true
+  session_balance: London_dominant
+  target_trades: 40
+  target_volume_range:
+  - 35
+  - 50
+  target_win_rate: 0.7
+success_pattern_tracking:
+  auto_adjust_to_success: true
+  success_week_patterns:
+  - May19
+  - May26
+  - Jun30
+  - Jul7
+  target_trades_range:
+  - 40
+  - 50
+  target_win_rate: 0.6
+  track_success_weeks: true
+success_replication:
+  quality_focus: true
+  replicate_jul7: true
+  replicate_jun30: true
+  replicate_may19: true
+  replicate_may26: true
+  session_balance: true
+  target_volume: 45
+  target_win_rate: 0.6
+time_filters:
+  avoid_hours:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  - 20
+  - 21
+  - 22
+  - 23
+  boost_hours:
+  - 9
+  - 11
+  - 12
+  - 14
+  - 15
+  boost_multiplier: 2.0
+volume_control:
+  daily_limit: 5
+  early_week_limit: 8
+  force_stop_at_limit: true
+  late_week_limit: 10
+  max_trades_per_week: 60
+  min_trades_per_week: 45
+  prevent_overflow: true
+  session_daily_limit: 2
+  success_pattern_enforcement: true
+  target_trades_per_week: 50
+volume_enforcement:
+  auto_stop_trading: true
+  enforce_daily_limit: true
+  enforce_session_limit: true
+  enforce_weekly_limit: true
+  force_quality_focus: true
+  max_consecutive_trades: 2
+  prevent_high_volume: true
+  success_pattern_enforcement: true
+volume_tracking:
+  alert_high_volume: true
+  auto_adjust_filters: true
+  target_weekly_trades: 45
+  track_weekly_volume: true
+walkforward:
+  max_trades_per_week: 100
+  min_trades_per_week: 5
+  stepback_weeks: 12
+  train_window_months: 18
+  validation_window_months: 3
+  window_weeks: 1
+quality_score_system:
+  enabled: false
+  base_threshold: 0.75
+  components:
+    session_quality:
+      NY: 1.0
+      London: 0.95
+      Asian: 0.6
+      Overlap: 0.5
+    hour_quality:
+      9: 1.0
+      11: 1.0
+      12: 1.0
+      14: 1.0
+      15: 1.0
+      6: 0.8
+      10: 0.8
+      13: 0.8
+      16: 0.7
+      18: 0.7
+      7: 0.5
+      8: 0.5
+      0: 0.4
+      1: 0.4
+      2: 0.4
+      3: 0.4
+      4: 0.4
+      5: 0.5
+      17: 0.6
+      19: 0.4
+      20: 0.4
+      21: 0.4
+      22: 0.4
+      23: 0.4
+    sl_tp_quality:
+      0.702_2.246: 1.0
+      0.312_0.998: 0.1
+      default: 0.6
+    momentum_weight: 0.3
+    volatility_weight: 0.2
+    pattern_weight: 0.5
+adaptive_volume_control:
+  enabled: false
+  min_quality_for_trade: 0.6
+  quality_bands:
+    excellent:
+      threshold: 0.8
+      max_trades: 50
+    good:
+      threshold: 0.6
+      max_trades: 40
+    moderate:
+      threshold: 0.5
+      max_trades: 30
+    poor:
+      threshold: 0.0
+      max_trades: 0
+  weekly_quality_average_target: 0.8
+  dynamic_adjustment: true
+session_optimization:
+  NY:
+    priority: 1
+    max_trades_per_day: 6
+    quality_threshold: 0.7
+    preferred_hours:
+    - 9
+    - 10
+    - 11
+    - 12
+    - 13
+    - 14
+    - 15
+  London:
+    priority: 2
+    max_trades_per_day: 4
+    quality_threshold: 0.75
+    preferred_hours:
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+  Asian:
+    priority: 4
+    max_trades_per_day: 1
+    quality_threshold: 0.85
+    preferred_hours: []
+  Overlap:
+    priority: 3
+    max_trades_per_day: 2
+    quality_threshold: 0.8
+    preferred_hours: []
+quality_position_sizing:
+  enabled: true
+  base_risk: 0.01
+  quality_multipliers:
+    excellent: 1.5
+    good: 1.0
+    moderate: 0.5
+smart_cooldown:
+  enabled: true
+  base_cooldown_minutes: 30
+  quality_based_cooldown:
+    after_excellent_win: 20
+    after_good_win: 30
+    after_moderate_win: 45
+    after_any_loss: 60
+    consecutive_wins_reduction: 5
+  session_cooldown_override:
+    NY_to_London: 15
+    other: 30
+pattern_recognition:
+  enabled: true
+  success_patterns:
+    may5_pattern:
+      trades_range:
+      - 35
+      - 45
+      session_distribution:
+        NY: 0.6
+        London: 0.3
+        Asian: 0.05
+        Overlap: 0.05
+      quality_score: 1.2
+    july7_pattern:
+      trades_range:
+      - 40
+      - 50
+      session_distribution:
+        NY: 0.5
+        London: 0.35
+        Asian: 0.05
+        Overlap: 0.1
+      quality_score: 1.1
+  avoid_patterns:
+    high_volume:
+      trades_threshold: 57
+      penalty: 0.5
+    overlap_heavy:
+      overlap_percentage: 0.2
+      penalty: 0.6
+performance_tracking:
+  enabled: true
+  rolling_window: 20
+  thresholds:
+    pause_trading: 0.4
+    tighten_quality: 0.5
+    normal_operation: 0.58
+    loosen_quality: 0.7
+  adjustment_factors:
+    tighten: 1.1
+    loosen: 0.95
+market_regime_detection:
+  enabled: true
+  regime_types:
+  - trending
+  - ranging
+  - volatile
+  - breakout
+  detection_methods:
+    volatility_based: true
+    trend_strength: true
+    range_analysis: true
+    momentum_analysis: true
+  parameters:
+    volatility_window: 20
+    trend_window: 50
+    range_threshold: 0.3
+    volatility_threshold: 0.5
+market_regimes:
+  trending:
+    rr_range:
+    - 2.0
+    - 4.0
+    max_trades_per_week: 35
+    filters: momentum_focused
+    position_sizing: aggressive
+    cooldown_minutes: 20
+  ranging:
+    rr_range:
+    - 1.5
+    - 2.5
+    max_trades_per_week: 25
+    filters: mean_reversion
+    position_sizing: moderate
+    cooldown_minutes: 30
+  volatile:
+    rr_range:
+    - 1.0
+    - 2.0
+    max_trades_per_week: 15
+    filters: conservative
+    position_sizing: defensive
+    cooldown_minutes: 45
+  breakout:
+    rr_range:
+    - 2.5
+    - 4.5
+    max_trades_per_week: 20
+    filters: breakout_focused
+    position_sizing: aggressive
+    cooldown_minutes: 25
+dynamic_rr_system:
+  enabled: true
+  base_rr: 2.0
+  volatility_adjustment: true
+  regime_adjustment: true
+  session_adjustment: true
+  parameters:
+    volatility_multiplier_range:
+    - 0.5
+    - 2.0
+    regime_multipliers:
+      trending: 1.2
+      ranging: 0.9
+      volatile: 0.7
+      breakout: 1.4
+    session_multipliers:
+      NY: 1.0
+      London: 1.1
+      Asian: 0.8
+      Overlap: 0.9
+advanced_noise_filtering:
+  enabled: true
+  quality_assessment:
+    technical_quality_weight: 0.3
+    regime_alignment_weight: 0.25
+    volatility_fit_weight: 0.2
+    session_timing_weight: 0.15
+    rr_appropriateness_weight: 0.1
+  dynamic_thresholds:
+    trending_market: 0.75
+    ranging_market: 0.8
+    volatile_market: 0.85
+    breakout_market: 0.7
+    low_volatility: 0.7
+    high_volatility: 0.9
+  minimum_quality_score: 0.7
+session_volume_control:
+  enabled: true
+  limits:
+    NY:
+      trending: 12
+      ranging: 8
+      volatile: 4
+      breakout: 6
+    London:
+      trending: 10
+      ranging: 6
+      volatile: 3
+      breakout: 5
+    Asian:
+      trending: 3
+      ranging: 2
+      volatile: 1
+      breakout: 2
+    Overlap:
+      trending: 4
+      ranging: 3
+      volatile: 2
+      breakout: 3
+volatility_adjustments:
+  enabled: true
+  atr_period: 14
+  volatility_thresholds:
+    low: 0.5
+    normal: 1.0
+    high: 2.0
+  position_sizing:
+    low_volatility: 1.2
+    normal_volatility: 1.0
+    high_volatility: 0.6
+market_condition_filters:
+  enabled: true
+  trending_filters:
+    momentum_threshold: 0.6
+    trend_strength_min: 0.4
+    volatility_max: 1.5
+  ranging_filters:
+    range_threshold: 0.3
+    volatility_max: 1.0
+    mean_reversion_strength: 0.5
+  volatile_filters:
+    volatility_min: 1.5
+    conservative_rr: true
+    reduced_position_size: true
